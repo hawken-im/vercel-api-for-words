@@ -39,8 +39,8 @@ export default async function handler(
     // Run the middleware
     await runMiddleware(req, res, cors)
 
-    // Rest of the API logic
-    res.json({ message: `Hello Everyone!${process.env.TEST_KEY}` })
+    // // Rest of the API logic
+    // res.json({ message: `Hello Everyone!${process.env.TEST_KEY}` })
 
     if (!configuration.apiKey) {
       res.status(500).json({
