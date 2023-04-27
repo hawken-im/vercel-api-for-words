@@ -10,8 +10,8 @@ const openai = new OpenAIApi(configuration);
 // Initializing the cors middleware
 // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
 const cors = Cors({
-    //origin: ["https://hawken-im.github.io/"],//TODO: add authentication method later, so I can change it to true.
-    origin: true,
+    origin: ["https://hawken-im.github.io/"],//TODO: add authentication method later, so I can change it to true.
+    //origin: true,
     methods: ['POST', 'GET', 'HEAD'],
 })
 
@@ -87,8 +87,8 @@ export default async function handler(
   
 function generatePrompt(text) {
     return `By given the text below, tell if it is in Egnlish.
-    If it is not, return a JSON:"{NE}".
-    If it is in English, consider a non-native English speaker with vocabulary of 3000 words, pick the words they may not know, return a JSON:"{words: [word1, word2, ...]}".
+    If it is not, return a JSON:{noten: ne}.
+    If it is in English, consider a non-native English speaker with vocabulary of 3000 words, pick the words they may not know, return a JSON:{words: [word1, word2, ...]}.
     Text: ${text}
     JSON:`;
 }
