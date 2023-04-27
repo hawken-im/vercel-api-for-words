@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration);
 // Initializing the cors middleware
 // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
 const cors = Cors({
-    origin: ["https://hawken-im.github.io/"],//TODO: add authentication method later, so I can change it to true.
+    origin: ["https://hawken-im.github.io/*"],//TODO: add authentication method later, so I can change it to true.
     //origin: true,
     methods: ['POST', 'GET', 'HEAD'],
 })
