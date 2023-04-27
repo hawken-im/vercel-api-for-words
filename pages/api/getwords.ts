@@ -51,8 +51,8 @@ export default async function handler(
       return;
     }
   
-    const animal = req.body.animal || '';
-    if (animal.trim().length === 0) {
+    const text = req.body.text || '';
+    if (text.trim().length === 0) {
       res.status(400).json({
         error: {
           message: "Please enter a valid animal",
@@ -64,8 +64,8 @@ export default async function handler(
     try {
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: generatePrompt(animal),
-        temperature: 0.6,
+        prompt: generatePrompt(text),
+        temperature: 0.5,
       });
       res.status(200).json({ result: completion.data.choices[0].text });
     } catch(error) {
@@ -84,14 +84,10 @@ export default async function handler(
     }
 }
   
-function generatePrompt(animal) {
-    const capitalizedAnimal =
-      animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-    return `Suggest three names for an animal that is a superhero.
-  Animal: Cat
-  Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-  Animal: Dog
-  Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-  Animal: ${capitalizedAnimal}
-  Names:`;
+function generatePrompt(text) {
+    return `By given the text below, tell if it is in Egnlish.
+    If it is not, return a JSON:"{NE}".
+    If it is in English, consider a non-native English speaker with vocabulary of 3000 words, pick the words they may not know, return a JSON:"{words: [word1, word2, ...]}".
+    Text: ${text}
+    JSON:`;
 }
