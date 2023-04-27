@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import Cors from 'cors'
+import Cors from 'micro-cors'
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
@@ -17,28 +17,29 @@ const cors = Cors({
 
 // Helper method to wait for a middleware to execute before continuing
 // And to throw an error when an error happens in a middleware
-function runMiddleware(
-  req: NextApiRequest,
-  res: NextApiResponse,
-  fn: Function
-) {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result: any) => {
-      if (result instanceof Error) {
-        return reject(result)
-      }
+// function runMiddleware(
+//   req: NextApiRequest,
+//   res: NextApiResponse,
+//   fn: Function
+// ) {
+//   return new Promise((resolve, reject) => {
+//     fn(req, res, (result: any) => {
+//       if (result instanceof Error) {
+//         return reject(result)
+//       }
 
-      return resolve(result)
-    })
-  })
-}
+//       return resolve(result)
+//     })
+//   })
+// }
+export default cors(handler);
 
-export default async function handler(
+async function handler(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
     // Run the middleware
-    await runMiddleware(req, res, cors)
+    //await runMiddleware(req, res, cors)
 
     // // Rest of the API logic
     // res.json({ message: `Hello Everyone!${process.env.TEST_KEY}` })
