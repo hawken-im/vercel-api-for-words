@@ -52,9 +52,8 @@ export default async function handler(
       return;
     }
   
-    const text = req.body.text || '';
-    const vocabulary = req.body.vocabulary || 3000;
-    if (text.trim().length === 0) {
+    const word = req.body.word || '';
+    if (word.trim().length === 0) {
       res.status(400).json({
         error: {
           message: "Please enter a valid animal",
@@ -66,8 +65,8 @@ export default async function handler(
     try {
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: generatePrompt(text,vocabulary),
-        temperature: 0.3,
+        prompt: generatePrompt(word),
+        temperature: 0.5,
       });
       res.status(200).json({ result: completion.data.choices[0].text });
     } catch(error) {
@@ -86,10 +85,10 @@ export default async function handler(
     }
 }
   
-function generatePrompt(text,vocabulary=3000) {
-    return `Tell if text given below is in Egnlish.
-    If not, return JSON:{"en": "n"}.
-    Else, consider non-native English speakers with vocabulary of ${vocabulary} words, pick the words they may not know, return a JSON:{"words": ["word1", "word2", ...]}.
-    Text: ${text}
-    JSON:`;
+function generatePrompt(word) {
+    return `As an English to Chinese dictionary, input word {${word}}, return:
+    Pronounciation:
+    Chinese Translation:
+    Explaination:
+    Example sentence:`;
 }
