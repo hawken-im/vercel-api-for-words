@@ -88,9 +88,17 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary = 3000) {
-    return `Analyze the following text, consider non-native English speakers with a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3").
+    return `Analyze the following text, consider non-native English speakers with a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3"), if no word to return, return "none".
 
     Text:
     ${text}
     `;
 }
+
+// function cleanWord(wordsArray: string[]) {
+//     const lowerCaseWordsArray = wordsArray.map((word) => word.toLowerCase());
+//     const cleanedWord = lowerCaseWordsArray.map((word) =>
+//       word.replace(/[^a-z]+/gi, "")
+//     );
+//     return cleanedWord;
+//}
