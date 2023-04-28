@@ -88,7 +88,7 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary = 3000) {
-    return `Analyze the following text and determine if it's written in English. If not, return "ne". If it is in English, consider non-native English speakers with a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3").
+    return `Analyze the following text, consider non-native English speakers with a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3").
 
     Text:
     ${text}
