@@ -86,10 +86,10 @@ export default async function handler(
     }
 }
   
-function generatePrompt(text,vocabulary=3000) {
+function generatePrompt(text, vocabulary = 3000) {
     return `Tell if text given below is in Egnlish.
-    If not, return JSON:{en: "n"}.
-    Else, consider non-native English speakers with vocabulary of ${vocabulary} words, pick the words they may not know, return a JSON:{words: ["word1", "word2", ...]}.
-    Text: ${text}
-    JSON:`;
-}
+    If not, return {"en": "n"}.
+    Else, consider non-native English speakers with vocabulary of ${vocabulary} words, pick the words they may not know, return {"words": ["word1", "word2", ...]}.
+    text: ${text}
+  }`;
+  }
