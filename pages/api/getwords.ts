@@ -67,7 +67,7 @@ export default async function handler(
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: generatePrompt(text,vocabulary),
-        temperature: 0.3,
+        temperature: 0.1,
       });
       const parsedResult = completion.data.choices[0].text.trim();
       res.status(200).json({ result: parsedResult });
@@ -92,7 +92,7 @@ function generatePrompt(text, vocabulary = 3000) {
 
     Text:
     ${text}
-    `;
+    `; // some word, like sudo, passwd, are not word, don't need to be translated
 }
 
 // function cleanWord(wordsArray: string[]) {
