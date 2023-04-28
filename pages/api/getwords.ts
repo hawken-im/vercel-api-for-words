@@ -94,11 +94,3 @@ function generatePrompt(text, vocabulary = 3000) {
     ${text}
     `; // some word, like sudo, passwd, are not word, don't need to be translated
 }
-
-// function cleanWord(wordsArray: string[]) {
-//     const lowerCaseWordsArray = wordsArray.map((word) => word.toLowerCase());
-//     const cleanedWord = lowerCaseWordsArray.map((word) =>
-//       word.replace(/[^a-z]+/gi, "")
-//     );
-//     return cleanedWord;
-//}
