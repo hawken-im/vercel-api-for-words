@@ -69,7 +69,8 @@ export default async function handler(
         prompt: generatePrompt(text,vocabulary),
         temperature: 0.3,
       });
-      res.status(200).json({ result: completion.data.choices[0].text });
+      const parsedResult = JSON.parse(completion.data.choices[0].text.trim());
+      res.status(200).json({ result: parsedResult });
     } catch(error) {
       // Consider adjusting the error handling logic for your use case
       if (error.response) {
@@ -87,9 +88,8 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary = 3000) {
-    return `Tell if text given below is in Egnlish.
-    If not, return {"en": "n"}.
-    Else, consider non-native English speakers with vocabulary of ${vocabulary} words, pick the words they may not know, return {"words": ["word1", "word2", ...]}.
-    text: ${text}
-  }`;
+    return `Analyze the following text and determine if it's written in English. If not, return {"en": "n"}. If it is in English, consider non-native English speakers with a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in the format {"words": ["word1", "word2", ...]}.
+    Text:
+    ${text}
+    `;
   }
