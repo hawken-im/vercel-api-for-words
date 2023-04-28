@@ -57,7 +57,7 @@ export default async function handler(
     if (text.trim().length === 0) {
       res.status(400).json({
         error: {
-          message: "Please enter a valid animal",
+          message: "Input text is not valid",
         }
       });
       return;
@@ -88,8 +88,8 @@ export default async function handler(
   
 function generatePrompt(text,vocabulary=3000) {
     return `Tell if text given below is in Egnlish.
-    If not, return JSON:{"en": "n"}.
-    Else, consider non-native English speakers with vocabulary of ${vocabulary} words, pick the words they may not know, return a JSON:{"words": ["word1", "word2", ...]}.
+    If not, return JSON:{en: "n"}.
+    Else, consider non-native English speakers with vocabulary of ${vocabulary} words, pick the words they may not know, return a JSON:{words: ["word1", "word2", ...]}.
     Text: ${text}
     JSON:`;
 }

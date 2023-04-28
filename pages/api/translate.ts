@@ -56,7 +56,7 @@ export default async function handler(
     if (word.trim().length === 0) {
       res.status(400).json({
         error: {
-          message: "Please enter a valid animal",
+          message: "Input word invalid",
         }
       });
       return;
