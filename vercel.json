@@ -1,6 +1,6 @@
 {
     "functions": {
-      "api/translate": {
+      "pages/api/translate": {
         "maxDuration": 10
       }
     }
