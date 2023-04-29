@@ -67,6 +67,7 @@ export default async function handler(
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: generatePrompt(text,vocabulary),
+        max_tokens: 100,
         temperature: 0.1,
       });
       const parsedResult = completion.data.choices[0].text.trim();
