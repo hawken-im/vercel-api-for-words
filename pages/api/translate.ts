@@ -86,9 +86,10 @@ export default async function handler(
 }
   
 function generatePrompt(word) {
-    return `As an English to Chinese dictionary, input word {${word}}, return:
-    Pronounciation:
-    Chinese Translation:
-    Explaination:
-    Example sentence:`;
+    return `你是一个翻译引擎，请给出单词原始形态（如果有）、单词的语种、对应的音标（如果有）、所有含义（含词性）、双语示例，至少三条例句，请严格按照下面格式给出翻译结果：
+    <原始文本>
+    [<语种>] · / <单词音标>
+    [<词性缩写>] <中文含义>]
+    例句：
+    <序号><例句>(例句翻译)`;
 }
