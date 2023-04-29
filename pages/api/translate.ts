@@ -66,8 +66,8 @@ export default async function handler(
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: generatePrompt(word),
-        max_tokens: 500,
-        temperature: 0.5,
+        max_tokens: 1000,
+        temperature: 0.3,
       });
       res.status(200).json({ result: completion.data.choices[0].text });
     } catch(error) {
@@ -88,7 +88,8 @@ export default async function handler(
   
 function generatePrompt(word) {
     return `Act as a English to Chinese word translator. You will provide the original form of the word (if any), the corresponding phonetic notation (if any), all meanings (including parts of speech), bilingual example sentences (up to 3). Please strictly follow the format below for the translation result.
-    <word>: ${word}
+    Translate ${word}.
+
     <orignal form>:
     <phonetic notation>:
     <meaning 1>:
