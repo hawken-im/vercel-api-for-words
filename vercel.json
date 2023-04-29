@@ -1,7 +1,7 @@
 {
     "functions": {
       "api/translate": {
-        "maxDuration": 30
+        "maxDuration": 10
       }
     }
 }
