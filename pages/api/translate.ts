@@ -86,10 +86,15 @@ export default async function handler(
 }
   
 function generatePrompt(word) {
-    return `你是一个翻译引擎，请给出英语单词${word}的原始形态（如果有）、对应的音标（如果有）、所有含义（含词性）、双语示例，至少三条例句，请严格按照下面格式给出翻译结果：
-    <原始文本>
-    <单词音标>
-    [<词性缩写>] <中文含义>]
-    例句：
-    <序号><例句>(例句翻译)`;
+    return `Act as a English to Chinese word translator. You will provide the original form of the word (if any), the corresponding phonetic notation (if any), all meanings (including parts of speech), bilingual example sentences (up to 3). Please strictly follow the format below for the translation result.
+    <orignal form>:
+    <phonetic notation>:
+    <meaning 1>:
+    <meaning 2>:
+    ...
+    <meaning n>:
+    <bilingual example sentence 1>:
+    <bilingual example sentence 2>:
+    <bilingual example sentence 3>:
+    `;
 }
