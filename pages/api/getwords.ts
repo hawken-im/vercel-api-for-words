@@ -89,9 +89,9 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary = 3000) {
-    return `Act as a Word Identifier for Non-Native English Speakers. Analyze the following text, based on a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3"), if they know all the words, return "none".
+    return `Act as a Word Identifier for Non-Native English Speakers. Analyze the following text delimited by riple quotes, based on a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3"), if they know all the words, return "none".
 
     Text:
-    ${text}
+    """${text}"""
     `; // some word, like sudo, passwd, are not word, don't need to be translated
 }
