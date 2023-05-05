@@ -89,7 +89,7 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary = 3000) {
-    return `Act as a Word Identifier for Non-Native English Speakers. Analyze the following text delimited by riple quotes, based on a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3"), if they know all the words, return "none".
+    return `Act as an English language expert. For Non-Native English Speakers, analyze the following text delimited by riple quotes, based on a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3"), if they know all the words, return "none".
 
     Text:
     """${text}"""
