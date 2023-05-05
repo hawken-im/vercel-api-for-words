@@ -87,7 +87,7 @@ export default async function handler(
 }
   
 function generatePrompt(word) {
-    return `Act as a English to Chinese word translator. You will provide the original form of the word (if any), the corresponding phonetic notation (if any), all meanings in Chinese (including parts of speech), a bilingual example sentence. Please strictly follow the format below for the translation result.
+    return `Act as a English to Chinese word translator. You will provide the original form of the word (if any), the corresponding phonetic notation (if any), all meanings in both English and Chinese (including parts of speech), a bilingual example sentence. Please strictly follow the format below for the translation result.
     Translate: ${word}.
 
     <orignal form>:
