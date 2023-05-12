@@ -90,7 +90,7 @@ export default async function handler(
   
 function generatePrompt(text, vocabulary) {
     return `Act as an English language expert. For Non-Native English Speakers, analyze the following text delimited by riple quotes, based on a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3"), if they know all the words, return "none".
-    If the vocabulary is above 3000, return "too large".
+    Also return the vocabulary too (e.g., "vocabualry: 3000").
 
     Text:
     """${text}"""
