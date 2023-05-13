@@ -89,9 +89,7 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary) {
-    return `Act as an English language expert. For Non-Native English Speakers, analyze the following text delimited by riple quotes, based on a vocabulary of approximately ${vocabulary} words. Identify and return the words they may not be familiar with in CSV format (e.g., "word1,word2,word3"), if they know all the words, return "none".
-    Also return the vocabulary too (e.g., "vocabualry: 3000").
-
+    return `As an English language expert, analyze the text enclosed within triple quotes, considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If they know all the words, return "none".
     Text:
     """${text}"""
     `; // some word, like sudo, passwd, are not word, don't need to be translated
