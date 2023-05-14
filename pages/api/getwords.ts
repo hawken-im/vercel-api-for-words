@@ -89,7 +89,7 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary) {
-    return `As an English language expert, analyze the text enclosed within triple quotes, considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If they know all the words, return "none".
+    return `As an English language expert, analyze the text enclosed within triple quotes, considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If they know all the words, strictly return "none".
     Text:
     """${text}"""
     `; // some word, like sudo, passwd, are not word, don't need to be translated
