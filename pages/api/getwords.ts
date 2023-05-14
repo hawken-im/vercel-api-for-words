@@ -95,7 +95,7 @@ function generatePrompt(text, vocabulary) {
   // Here is the text:
   // """${text}"""
   // `;
-  return `As an English language expert, analyze the text below enclosed within triple quotes. Considering a non-native English speaker who is familiar with the ${vocabulary} most common English words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If you think that they know all the words in the text, return "none".
+  return `As an English language expert, your task is to analyze the text of English words below enclosed within triple quotes. Considering a non-native English speaker who is familiar with the ${vocabulary} most common English words. Identify and return the words they may not know or unfamiliar with in CSV format (e.g., "word1,word2,word3"). If you think that they know all the words in the text, return "none".
   Text:
   """${text}"""
   `;
