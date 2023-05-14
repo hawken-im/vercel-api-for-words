@@ -2,6 +2,9 @@
     "functions": {
       "pages/api/translate": {
         "maxDuration": 10
+      },
+      "pages/api/getwords": {
+        "maxDuration": 10
       }
     },
     "headers": [
