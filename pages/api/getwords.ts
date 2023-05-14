@@ -74,6 +74,7 @@ export default async function handler(
       res.status(200).json({ result: parsedResult });
     } catch(error) {
       // Consider adjusting the error handling logic for your use case
+      // 记得handle 504 error
       if (error.response) {
         console.error(error.response.status, error.response.data);
         res.status(error.response.status).json(error.response.data);
@@ -94,7 +95,7 @@ function generatePrompt(text, vocabulary) {
   // Here is the text:
   // """${text}"""
   // `;
-  return `As an English language expert, analyze the text below enclosed within triple quotes. Considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. This non-native speaker is familiar with the ${vocabulary} most common English words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If you think that they know all the words in the text, return "none".
+  return `As an English language expert, analyze the text below enclosed within triple quotes. Considering a non-native English speaker who is familiar with the ${vocabulary} most common English words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If you think that they know all the words in the text, return "none".
   Text:
   """${text}"""
   `;
