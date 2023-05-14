@@ -89,8 +89,8 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary) {
-  return `By given text below enclosed within triple quotes. Translate the first word into Chinese with a test number: ${vocabulary}.
-  Follow the format: <translate>: <test number>:
+  return `By given text below enclosed within triple quotes. Give back the first word with a test number: ${vocabulary}.
+  Follow the format: <first word>: <test number>:
   Here is the text:
   """${text}"""
   `;
