@@ -67,8 +67,8 @@ export default async function handler(
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: generatePrompt(text,vocabulary),
-        max_tokens: 100,
-        temperature: 0.1,
+        max_tokens: 500,
+        temperature: 0.5,
       });
       const parsedResult = completion.data.choices[0].text.trim();
       res.status(200).json({ result: parsedResult });
@@ -89,8 +89,8 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary) {
-    return `As an English language expert, you know a native educatied adult English speaker has a vocabulary level of about 15000 words. Analyze the text enclosed within triple quotes, considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If you think that they know all the words, strictly return "none".
-    Text:
-    """${text}"""
-    `; // some word, like sudo, passwd, are not word, don't need to be translated
+  return `As an English language expert, you know a native educated adult English speaker has a vocabulary level of about 15000 words. Analyze the text enclosed within triple quotes, considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. This non-native speaker is familiar with the ${vocabulary} most common English words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If you think that they know all the words, strictly return "none".
+  Text:
+  """${text}"""
+  `;
 }
