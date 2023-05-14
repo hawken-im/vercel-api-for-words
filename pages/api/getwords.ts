@@ -89,7 +89,7 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary) {
-  return `As an English language expert, you know a native educated adult English speaker has a vocabulary level of about 15000 words. Analyze the text enclosed within triple quotes, considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. This non-native speaker is familiar with the ${vocabulary} most common English words. Identify and return any unfamiliar words for them in CSV format, at least return 5% words from the given text (e.g., "word1,word2,word3"). If you think that they know all the words, strictly return "none".
+  return `As an English language expert, analyze the text below enclosed within triple quotes. Considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. This non-native speaker is familiar with the ${vocabulary} most common English words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If you think that they know all the words in the text, return "none".
   Text:
   """${text}"""
   `;
