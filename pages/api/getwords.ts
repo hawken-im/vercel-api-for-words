@@ -89,13 +89,13 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary) {
-  return `By given text below enclosed within triple quotes. Give back the first word with a test number: ${vocabulary}.
-  Follow the format: <first word>: <test number>:
-  Here is the text:
-  """${text}"""
-  `;
-  // return `As an English language expert, analyze the text below enclosed within triple quotes. Considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. This non-native speaker is familiar with the ${vocabulary} most common English words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If you think that they know all the words in the text, return "none".
-  // Text:
+  // return `By given text below enclosed within triple quotes. Give back the first word with a test number: ${vocabulary}.
+  // Follow the format: <first word>: <test number>:
+  // Here is the text:
   // """${text}"""
   // `;
+  return `As an English language expert, analyze the text below enclosed within triple quotes. Considering a non-native English speaker with a vocabulary of approximately ${vocabulary} words. This non-native speaker is familiar with the ${vocabulary} most common English words. Identify and return any unfamiliar words for them in CSV format (e.g., "word1,word2,word3"). If you think that they know all the words in the text, return "none".
+  Text:
+  """${text}"""
+  `;
 }
