@@ -68,13 +68,12 @@ export default async function handler(
         model: "text-davinci-003",
         prompt: generatePrompt(text,vocabulary),
         max_tokens: 500,
-        temperature: 0.5,
+        temperature: 0.3,
       });
       const parsedResult = completion.data.choices[0].text.trim();
       res.status(200).json({ result: parsedResult });
     } catch(error) {
       // Consider adjusting the error handling logic for your use case
-      // 记得handle 504 error
       if (error.response) {
         console.error(error.response.status, error.response.data);
         res.status(error.response.status).json(error.response.data);
