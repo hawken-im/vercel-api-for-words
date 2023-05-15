@@ -95,7 +95,7 @@ function generatePrompt(text, vocabulary) {
   // Here is the text:
   // """${text}"""
   // `;
-  return `As an English language expert, your task is to analyze the text provided within triple quotes and identify words that might be unfamiliar to a non-native English speaker who is familiar with the ${vocabulary} most common English words. Keep in mind that a native English speaker has an average vocabulary of 15000 words. List the unfamiliar words in CSV format, like this: "word1,word2,word3", and make sure to include at least one word that you believe they are most likely to be unfamiliar with.
-  Text:
+  return `As an English language expert, your task is to analyze the words list in CSV provided within triple quotes and identify words that might be unfamiliar to a non-native English speaker who is familiar with the ${vocabulary} most common English words, or a vocabulary level of ${vocabulary}. Keep in mind that a native English speaker has an average vocabulary of 15000 words. Return a list of the unfamiliar words in CSV format (only words in a list nothing else: "word1,word2,word3"). If you believe that they know all the words, return: "none".
+  <words list>
   """${text}"""`;
 }
