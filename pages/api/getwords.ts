@@ -118,6 +118,6 @@ export default async function handler(
 }
   
 function generatePrompt(text, vocabulary, maxreturn) {
-  return `As an English language expert, your task is to analyze the words list in CSV format provided within triple quotes and identify words that might be unfamiliar to a non-native English speaker who is familiar with the ${vocabulary} most common English words, or a vocabulary level of ${vocabulary}. Keep in mind that a native English speaker has an average vocabulary of 15,000 words. Return a list of the most unfamiliar words in CSV format, no more than ${maxreturn} words, only the words you picked out, nothing else, for example: "word1,word2,word3". If you believe that they know all the words, return: "none". Here is the words list:
+  return `As an English language expert, your task is to analyze the words list in CSV format provided within triple quotes and identify words that might be unfamiliar to a non-native English speaker who is familiar with the ${vocabulary} most common English words, or a vocabulary level of ${vocabulary}. Keep in mind that a native English speaker has an average vocabulary of 15,000 words. It is important to only return a list of the ${maxreturn} most unfamiliar words in CSV format, no more than ${maxreturn} words. Include only the words you picked out, nothing else, for example: "word1,word2,word3". If you believe that they know all the words, return: "none". Here is the words list:
   """${text}"""`;
 }
