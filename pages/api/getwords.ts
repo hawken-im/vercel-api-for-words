@@ -34,28 +34,28 @@ function runMiddleware(
 }
 
 /*
-To convert the range of 3000 to 8000 into 6 to 2, with 3000 mapping to 6 and 8000 mapping to 2, you can use the following formula:
+To convert the range of 3000 to 8000 into 10 to 3, you can use the following formula:
 
 newValue = ((oldValue - oldMin) * (newMin - newMax) / (oldMax - oldMin)) + newMax
 
-In this case, oldMin = 3000, oldMax = 8000, newMin = 2, and newMax = 6. Plug these values into the formula:
+In this case, oldMin = 3000, oldMax = 8000, newMin = 3, and newMax = 10. Plug these values into the formula:
 
-newValue = ((oldValue - 3000) * (2 - 6) / (8000 - 3000)) + 6
+newValue = ((oldValue - 3000) * (3 - 10) / (8000 - 3000)) + 10
 
 Simplify the formula:
 
-newValue = ((oldValue - 3000) * (-4) / 5000) + 6
+newValue = ((oldValue - 3000) * (-7) / 5000) + 10
 
 Now, you can use this formula to convert any value within the range of 3000 to 8000 into the range of 6 to 2, with 3000 mapping to 6 and 8000 mapping to 2.
 */
 function getMaxReturn(
   vocabulary: number
 ) {
-  const result = Math.floor(((vocabulary - 3000) * (-4) / 5000) + 6);
-  if (result <= 2) {
-      return 2
-    } else if (result >= 6) {
-      return 6
+  const result = Math.floor(((vocabulary - 3000) * (-7) / 5000) + 10);
+  if (result < 3) {
+      return 3
+    } else if (result > 10) {
+      return 10
     } else {
     return result;
   }
