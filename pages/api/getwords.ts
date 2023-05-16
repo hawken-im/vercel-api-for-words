@@ -33,6 +33,34 @@ function runMiddleware(
   })
 }
 
+/*
+To convert the range of 3000 to 8000 into 6 to 2, with 3000 mapping to 6 and 8000 mapping to 2, you can use the following formula:
+
+newValue = ((oldValue - oldMin) * (newMin - newMax) / (oldMax - oldMin)) + newMax
+
+In this case, oldMin = 3000, oldMax = 8000, newMin = 2, and newMax = 6. Plug these values into the formula:
+
+newValue = ((oldValue - 3000) * (2 - 6) / (8000 - 3000)) + 6
+
+Simplify the formula:
+
+newValue = ((oldValue - 3000) * (-4) / 5000) + 6
+
+Now, you can use this formula to convert any value within the range of 3000 to 8000 into the range of 6 to 2, with 3000 mapping to 6 and 8000 mapping to 2.
+*/
+function getMaxReturn(
+  vocabulary: number
+) {
+  const result = Math.floor(((vocabulary - 3000) * (-4) / 5000) + 6);
+  if (result <= 2) {
+      return 2
+    } else if (result >= 6) {
+      return 6
+    } else {
+    return result;
+  }
+}
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -54,6 +82,7 @@ export default async function handler(
   
     const text = req.body.text || '';
     const vocabulary = req.body.vocabulary || 3000;
+    const maxreturn = getMaxReturn(vocabulary);
     if (text.trim().length === 0) {
       res.status(400).json({
         error: {
@@ -66,7 +95,7 @@ export default async function handler(
     try {
       const completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: generatePrompt(text,vocabulary),
+        prompt: generatePrompt(text,vocabulary,maxreturn),
         max_tokens: 500,
         temperature: 0.3,
       });
@@ -88,7 +117,7 @@ export default async function handler(
     }
 }
   
-function generatePrompt(text, vocabulary) {
-  return `As an English language expert, your task is to analyze the words list in CSV format provided within triple quotes and identify words that might be unfamiliar to a non-native English speaker who is familiar with the ${vocabulary} most common English words, or a vocabulary level of ${vocabulary}. Keep in mind that a native English speaker has an average vocabulary of 15,000 words. Return a list of the unfamiliar words in CSV format, only the words you picked out, nothing else, for example: "word1,word2,word3". If you believe that they know all the words, return: "none". Here is the words list:
+function generatePrompt(text, vocabulary, maxreturn) {
+  return `As an English language expert, your task is to analyze the words list in CSV format provided within triple quotes and identify words that might be unfamiliar to a non-native English speaker who is familiar with the ${vocabulary} most common English words, or a vocabulary level of ${vocabulary}. Keep in mind that a native English speaker has an average vocabulary of 15,000 words. Return a list of the most unfamiliar words in CSV format, no more than ${maxreturn} words, only the words you picked out, nothing else, for example: "word1,word2,word3". If you believe that they know all the words, return: "none". Here is the words list:
   """${text}"""`;
 }
