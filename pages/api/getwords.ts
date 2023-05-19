@@ -124,13 +124,15 @@ export default async function handler(
 
 function generatePrompt(text, vocabulary) {
   return `As an English language expert, your task is to analyze the given words list in CSV format and identify words that might be unfamiliar to a non-native English speaker who is familiar with an amount of most common English words, or vocabulary level. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 5,000 words. Considering the given vocabulary level, return a list of the unfamiliar words in CSV format. If you really sure that the non-native English speaker knows all the words, return: "none".
-  <Given words list>stance, meadow, shovel, ledge, respite, reproach, offal, rancid, portmanteau, midriff, chivvy, tureen, inveigle
+  <Given words list>flood,pencil,skirt,portmanteau,stall,carve,ledge,respite,reproach,offal,rancid,midriff,chivvy,tureen,inveigle,pittance,ceiling,meadow,stance,shovel
   <Vocabulary level>4000
-  <Unfamiliar words list>offal, rancid, portmanteau, midriff, chivvy, tureen, inveigle
-  <Given words list>stance, meadow, shovel, ledge, respite, reproach, offal, rancid, portmanteau, midriff, chivvy, tureen, inveigle
-  <Vocabulary level>8000
-  <Unfamiliar words list>portmanteau, midriff
+  <Unfamiliar words list>respite,reproach,offal,rancid,portmanteau,midriff,chivvy,tureen,inveigle,pittance
+  <Given words list>hollow,forbid,stern,ingratiate,plank,eavesdrop,legerdemain,cute,hamper,gleam,shrill,tickle,uxoricide,accomplish,shaggy,stubble,trundle,drip,warranty
+  <Vocabulary level>9000
+  <Unfamiliar words list>ingratiate,legerdemain,uxoricide
   <Given words list>${text}
   <Vocabulary level>${vocabulary}
   <Unfamiliar words list>`;
 }
+
+
