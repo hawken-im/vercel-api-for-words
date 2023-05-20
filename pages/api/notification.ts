@@ -33,5 +33,5 @@ export default async function handler(
   await runMiddleware(req, res, cors)
 
   // Rest of the API logic
-  res.json({ message: `${process.env.NOTIFICATION}` })
+  res.json({ message: `你好啊，${process.env.NOTIFICATION}` })
 }
