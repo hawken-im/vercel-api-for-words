@@ -40,6 +40,13 @@ export default async function handler(
     // Run the middleware
     await runMiddleware(req, res, cors)
 
+    // Extract and validate the API key
+    const apiKey = req.headers['authorization']?.split(' ')[1] || req.headers['x-api-key'];
+    if (apiKey !== process.env.MY_API_KEY) {
+      res.status(401).json({ error: { message: 'Unauthorized' } });
+      return;
+    }
+
     // // Rest of the API logic
     // res.json({ message: `Hello Everyone!${process.env.TEST_KEY}` })
 
