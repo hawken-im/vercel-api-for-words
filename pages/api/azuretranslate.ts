@@ -95,7 +95,7 @@ function generatePrompt(word) {
       {
         role: "assistant",
         content: `<original form>:advance
-        <phonetic notation>:əd'væns
+        <phonetic notation>:/ əd'væns /
         <meaning>:v. 前进, 进展 move forward, make progress 
         <example>:部队正朝首都前进。 The troops are advancing on the capital.
         <meaning>:vt. 提出（想法或理论） to suggest an idea or theory 
@@ -114,7 +114,7 @@ function generatePrompt(word) {
         role: "assistant",
         content: `
         <original form>:development
-        <phonetic notation>:dɪ'veləpmənt
+        <phonetic notation>:/ dɪ'veləpmənt /
         <meaning>:n. 成长, 发育 the process in which someone or something grows
         <example>:健康的成长发育 healthy growth and development
         <meaning>:n. 动态, 进展 a recent event
