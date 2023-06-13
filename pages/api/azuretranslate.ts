@@ -80,16 +80,12 @@ function generatePrompt(word) {
     return [
       {
         role: "system",
-        content: `Act as a English to Chinese (Simplified) word translator. You will provide the original form of the word (if any), the corresponding phonetic notation (if any), all meanings (including parts of speech) in both English and Chinese with bilingual examples, synonyms(if any). Please strictly follow the format below for the translation result.
+        content: `Act as a English to Chinese (Simplified) word translator. You will provide the original form of the word, the phonetic notation, all meanings (including part of speech) in both English and Chinese with bilingual examples, synonyms(if any). Please strictly follow the format below for the translation result.
         <original form>:
         <phonetic notation>:
         <meaning>:
         <example>:
-        <meaning>:
-        <example>:
         ...
-        <meaning>:
-        <example>:
         <synonyms>:`
       },
       {
@@ -100,14 +96,14 @@ function generatePrompt(word) {
         role: "assistant",
         content: `<original form>:advance
         <phonetic notation>:əd'væns
-        <meaning>:v. move forward, make progress 前进, 进展 
-        <example>:The troops are advancing on the capital. 部队正朝首都挺进。
-        <meaning>:vt. to suggest an idea or theory 提出（想法或理论）
-        <example>:the theory advanced in this article 这篇论文提出的理论
-        <meaning>:n. development, movement forward 发展, 挺进
-        <example>:Nothing could stop the advance of the floodwaters. 洪水滔滔奔来，势不可挡。
-        <meaning>:n. money paid before the regular time 预付款
-        <example>:She asked for a £300 advance on her salary. 她要求预付她300英镑薪水。
+        <meaning>:v. 前进, 进展 move forward, make progress 
+        <example>:部队正朝首都前进。 The troops are advancing on the capital.
+        <meaning>:vt. 提出（想法或理论） to suggest an idea or theory 
+        <example>:这篇论文提出的理论 the theory advanced in this article
+        <meaning>:n. 发展, 挺进 development, movement forward
+        <example>:洪水滔滔奔来，势不可挡。 Nothing could stop the advance of the floodwaters.
+        <meaning>:n. 预付款 money paid before the regular time
+        <example>:她要求预付她300英镑薪水。 She asked for a £300 advance on her salary.
         <synonyms>:advance / advanced / advances / advancing`
       },
       {
@@ -119,12 +115,10 @@ function generatePrompt(word) {
         content: `
         <original form>:development
         <phonetic notation>:dɪ'veləpmənt
-        <meaning>:the process in which someone or something grows 成长, 发育
-        <example>:healthy growth and development 健康的成长发育
-        <meaning>:a recent event 动态, 进展
-        <example>:Call me if there are any new developments. 如果有什么新动态就给我打电话。
-        <meaning>:the process of developing something new 开发, 研制
-        <example>:the development of new drugs 新药的研制
+        <meaning>:n. 成长, 发育 the process in which someone or something grows
+        <example>:健康的成长发育 healthy growth and development
+        <meaning>:n. 动态, 进展 a recent event
+        <example>:如果有什么新动态就给我打电话。 Call me if there are any new developments.
         <synonyms>:development / developments`
       },
       {
@@ -132,15 +126,4 @@ function generatePrompt(word) {
         content: `Translate: {${word}}`
       }
     ]
-    //  `Act as a English to Chinese (Simplified) word translator. You will provide the original form of the word (if any), the corresponding phonetic notation (if any), all meanings (including parts of speech) in both English and Chinese, a bilingual example. Please strictly follow the format below for the translation result.
-    // Translate: ${word}.
-
-    // <original form>:
-    // <phonetic notation>:
-    // <meaning 1>:
-    // <meaning 2>:
-    // ...
-    // <meaning n>:
-    // <bilingual example>:
-    // `;
 }
