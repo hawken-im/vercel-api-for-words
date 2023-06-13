@@ -48,18 +48,18 @@ newValue = ((oldValue - 3000) * (-7) / 5000) + 10
 
 Now, you can use this formula to convert any value within the range of 3000 to 8000 into the range of 6 to 2, with 3000 mapping to 6 and 8000 mapping to 2.
 */
-function getMaxReturn(
-  vocabulary: number
-) {
-  const result = Math.floor(((vocabulary - 3000) * (-7) / 5000) + 10);
-  if (result < 3) {
-      return 3
-    } else if (result > 10) {
-      return 10
-    } else {
-    return result;
-  }
-}
+// function getMaxReturn(
+//   vocabulary: number
+// ) {
+//   const result = Math.floor(((vocabulary - 3000) * (-7) / 5000) + 10);
+//   if (result < 3) {
+//       return 3
+//     } else if (result > 10) {
+//       return 10
+//     } else {
+//     return result;
+//   }
+// }
 
 export default async function handler(
     req: NextApiRequest,

@@ -1,9 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import Cors from 'cors'
 import { AzureKeyCredential, OpenAIClient } from '@azure/openai';
-
 const endpoint = process.env.AZURE_OPENAI_ENDPOINT
-const azureApiKey = process.env.MICROSOFT_KEY
+const azureApiKey = process.env.AZURE_OPENAI_KEY
 
 
 const openai = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
@@ -37,21 +36,6 @@ function runMiddleware(
   })
 }
 
-/*
-To convert the range of 3000 to 8000 into 10 to 3, you can use the following formula:
-
-newValue = ((oldValue - oldMin) * (newMin - newMax) / (oldMax - oldMin)) + newMax
-
-In this case, oldMin = 3000, oldMax = 8000, newMin = 3, and newMax = 10. Plug these values into the formula:
-
-newValue = ((oldValue - 3000) * (3 - 10) / (8000 - 3000)) + 10
-
-Simplify the formula:
-
-newValue = ((oldValue - 3000) * (-7) / 5000) + 10
-
-Now, you can use this formula to convert any value within the range of 3000 to 8000 into the range of 6 to 2, with 3000 mapping to 6 and 8000 mapping to 2.
-*/
 function getMaxReturn(
   vocabulary: number
 ) {
@@ -110,9 +94,13 @@ export default async function handler(
       //   max_tokens: 500,
       //   temperature: 0.2,
       // });
-      const prompt = [generatePrompt(text,vocabulary)];
-      const result = await openai.getCompletions(deploymentId, prompt);      
-      const parsedResult = result.choices[0].text.trim();
+      const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+      //const deploymentId = "text-davici-003";
+      const deploymentId = "HRHgpt35"
+
+      const prompt = generatePrompt(text,vocabulary);
+      const result = await client.getChatCompletions(deploymentId, prompt);    
+      const parsedResult = result.choices[0].message.content.trim();
       res.status(200).json({ result: parsedResult });
     } catch(error) {
       // Consider adjusting the error handling logic for your use case
@@ -129,35 +117,39 @@ export default async function handler(
       }
     }
 }
-  
-// function generatePrompt(text, vocabulary, maxreturn) {
-//   return `As an English language expert, your task is to analyze the words list in CSV format provided within triple quotes and identify words that might be unfamiliar to a non-native English speaker who is familiar with the ${vocabulary} most common English words, or a vocabulary level of ${vocabulary}. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 6,000 words which is almost the same as a 8-year-old child. Considering the given vocabulary level (${vocabulary} words), it is important to only return a list of the ${maxreturn} most unfamiliar words in CSV format, no more than ${maxreturn} words. Include only the words you picked out, nothing else, for example: "word1,word2,word3". If you really sure that the non-native English speaker know all the words, return: "none". Here is the words list:
-//   """${text}"""`;
-// }
-
-// function generatePrompt(text, vocabulary) {
-//   return `As an English language expert, your task is to analyze the given words list in CSV format and identify words that might be unfamiliar to a non-native English speaker who is familiar with an amount of most common English words, or vocabulary level. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 5,000 words. Considering the given vocabulary level, return a list of the unfamiliar words in CSV format. If you really sure that the non-native English speaker knows all the words, return: "none".
-//   <Given words list>flood,pencil,skirt,portmanteau,stall,carve,ledge,respite,reproach,offal,rancid,midriff,chivvy,tureen,inveigle,ceiling,meadow,stance,shovel,cute,plank
-//   <Vocabulary level>4000
-//   <Unfamiliar words list>portmanteau,stall,respite,reproach,offal,rancid,midriff,chivvy,tureen,inveigle,plank
-//   <Given words list>hollow,flood,pencil,forbid,stern,ingratiate,plank,eavesdrop,skirt,legerdemain,cute,hamper,gleam,shrill,tickle,uxoricide,accomplish,shaggy,drip,warranty
-//   <Vocabulary level>8000
-//   <Unfamiliar words list>ingratiate,eavesdrop,legerdemain,uxoricide,hamper
-//   <Given words list>${text}
-//   <Vocabulary level>${vocabulary}
-//   <Unfamiliar words list>`;
-// }
 
 function generatePrompt(text, vocabulary) {
-  return `As an English language expert, your task is to analyze the given words list in CSV format and identify words that might be unfamiliar to a non-native English speaker who is familiar with an amount of most common English words, or vocabulary level. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 5,000 words. Considering the given vocabulary level, return a list of the unfamiliar words in CSV format. If you really sure that the non-native English speaker knows all the words, return: "none".
-  <Given words list>flood,pencil,skirt,stall,carve,ledge,ceiling,meadow,stance,shovel,cute,plank,next,pay,enough,best,flow,clever,shake,sham,rind,weasel,grouse,bury,shrivel,pastiche,discomfit,sully
-  <Vocabulary level>4000
-  <Unfamiliar words list>stall,ledge,ceiling,stance,sham,rind,weasel,grouse,shrivel,pastiche,discomfit
-  <Given words list>flood,pencil,skirt,stall,carve,ledge,ceiling,meadow,stance,shovel,cute,plank,next,pay,enough,best,flow,clever,shake,sham,rind,weasel,grouse,bury,shrivel,pastiche,discomfit,sully
-  <Vocabulary level>8000
-  <Unfamiliar words list>rind,grouse,shrivel,pastiche,discomfit
-  <Given words list>${text}
-  <Vocabulary level>${vocabulary}
-  <Unfamiliar words list>`;
+  return [
+    {
+      role: `system`,
+      content: 
+        `As an English language expert, your task is to analyze the given words in CSV format and identify words that might be unfamiliar to a non-native English speaker who is familiar with an amount of most common English words, or vocabulary level. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 5,000 words. Considering the given vocabulary level, return a list of the unfamiliar words in CSV format. If you really sure that the non-native English speaker knows all the words, return: "none".`,
+    },
+    {
+      role: `user`,
+      content: 
+        `Given words: {flood,pencil,skirt,stall,carve,ledge,ceiling,meadow,stance,shovel,cute,plank,next,pay,enough,best,flow,clever,shake,sham,rind,weasel,grouse,bury,shrivel,pastiche,discomfit,sully}
+        Vocabulary level: {4000}`,
+    },
+    {
+      role: `assistant`,
+      content: `stall,ledge,ceiling,stance,sham,rind,weasel,grouse,shrivel,pastiche,discomfit`,
+    },
+    {
+      role: `user`,
+      content: 
+        `Given words: {flood,pencil,skirt,stall,carve,ledge,ceiling,meadow,stance,shovel,cute,plank,next,pay,enough,best,flow,clever,shake,sham,rind,weasel,grouse,bury,shrivel,pastiche,discomfit,sully}
+        Vocabulary level: {8000}`,
+    },
+    {
+      role: `assistant`,
+      content: `rind,grouse,shrivel,pastiche,discomfit`,
+    },
+    {
+      role: `user`,
+      content: 
+        `Given words: {${text}}
+        Vocabulary level: {${vocabulary}}`,
+    }
+  ]
 }
-
