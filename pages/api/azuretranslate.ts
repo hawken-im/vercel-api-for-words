@@ -59,7 +59,7 @@ export default async function handler(
       const deploymentId = "HRHgpt35"
       const prompt = generatePrompt(word);
       const completion = await client.getChatCompletions(deploymentId, prompt); 
-      res.status(200).json({ result: completion.choices[0].message.content });
+      res.status(200).json({ result: completion.choices[0].message.content.trim() });
     } catch(error) {
       // Consider adjusting the error handling logic for your use case
       if (error.response) {

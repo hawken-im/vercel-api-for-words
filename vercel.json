@@ -1,10 +1,16 @@
 {
     "functions": {
       "pages/api/translate": {
-        "maxDuration": 10
+        "maxDuration": 20
       },
       "pages/api/getwords": {
-        "maxDuration": 10
+        "maxDuration": 20
+      },
+      "pages/api/azuregetword": {
+        "maxDuration": 20
+      },
+      "pages/api/azuretranslate": {
+        "maxDuration": 20
       }
     },
     "headers": [
