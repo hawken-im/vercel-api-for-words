@@ -80,46 +80,32 @@ function generatePrompt(word) {
     return [
       {
         role: "system",
-        content: `Act as a English to Chinese (Simplified) word translator. You will provide the original form of the word, the phonetic notation, all meanings (including part of speech) in both English and Chinese with bilingual examples, synonyms(if any). Please strictly follow the format below for the translation result.
-        <original form>:
-        <phonetic notation>:
-        <meaning>:
-        <example>:
-        ...
-        <synonyms>:`
+        content: `Act as an English to Chinese (Simplified) word translator. You will provide the translation results in the following format, making sure to include the "<>" symbols:
+<original form>:
+<phonetic notation>:
+<meaning>:
+<example>:
+...
+<synonyms>:
+Please strictly follow this format for the translation result.`
       },
       {
         role: "user",
-        content: `Look up: {advance}`
+        content: `Translate: {advance}`
       },
       {
         role: "assistant",
         content: `<original form>:advance
-        <phonetic notation>:/ əd'væns /
-        <meaning>:v. 前进, 进展 move forward, make progress 
-        <example>:部队正朝首都前进。 The troops are advancing on the capital.
-        <meaning>:vt. 提出（想法或理论） to suggest an idea or theory 
-        <example>:这篇论文提出的理论 the theory advanced in this article
-        <meaning>:n. 发展, 挺进 development, movement forward
-        <example>:洪水滔滔奔来，势不可挡。 Nothing could stop the advance of the floodwaters.
-        <meaning>:n. 预付款 money paid before the regular time
-        <example>:她要求预付她300英镑薪水。 She asked for a £300 advance on her salary.
-        <synonyms>:advance / advanced / advances / advancing`
-      },
-      {
-        role: "user",
-        content: `Look up: {development}`
-      },
-      {
-        role: "assistant",
-        content: `
-        <original form>:development
-        <phonetic notation>:/ dɪ'veləpmənt /
-        <meaning>:n. 成长, 发育 the process in which someone or something grows
-        <example>:健康的成长发育 healthy growth and development
-        <meaning>:n. 动态, 进展 a recent event
-        <example>:如果有什么新动态就给我打电话。 Call me if there are any new developments.
-        <synonyms>:development / developments`
+<phonetic notation>:/ əd'væns /
+<meaning>:v. move forward, make progress 前进, 进展  
+<example>:The troops are advancing on the capital.\n部队正朝首都前进。
+<meaning>:vt. to suggest an idea or theory 提出（想法或理论）
+<example>:the theory advanced in this article\n这篇论文提出的理论 
+<meaning>:n. development, movement forward 发展, 挺进 
+<example>:Nothing could stop the advance of the floodwaters.\n洪水滔滔奔来，势不可挡。
+<meaning>:n. money paid before the regular time 预付款 
+<example>:She asked for a £300 advance on her salary.\n她要求预付她300英镑薪水。
+<synonyms>:advance / advanced / advances / advancing`
       },
       {
         role: "user",
