@@ -88,12 +88,6 @@ export default async function handler(
     }
   
     try {
-      // const completion = await openai.getCompletions({
-      //   model: "text-davinci-003",
-      //   prompt: generatePrompt(text,vocabulary),
-      //   max_tokens: 500,
-      //   temperature: 0.2,
-      // });
       const client = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
       //const deploymentId = "text-davici-003";
       const deploymentId = "HRHgpt35"
