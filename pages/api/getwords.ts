@@ -142,16 +142,28 @@ export default async function handler(
 //   <Unfamiliar words list>`;
 // }
 
+// function generatePrompt(text, vocabulary) {
+//   return `As an English language expert, your task is to analyze the given words list in CSV format and identify words that might be unfamiliar to a non-native English speaker who is familiar with an amount of most common English words, or vocabulary level. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 5,000 words. Considering the given vocabulary level, return a list of the unfamiliar words in CSV format. If you really sure that the non-native English speaker knows all the words, return: "none".
+//   <Given words list>flood,pencil,skirt,stall,carve,ledge,ceiling,meadow,stance,shovel,cute,plank,next,pay,enough,best,flow,clever,shake,sham,rind,weasel,grouse,bury,shrivel,pastiche,discomfit,sully
+//   <Vocabulary level>4000
+//   <Unfamiliar words list>stall,ledge,ceiling,stance,sham,rind,weasel,grouse,shrivel,pastiche,discomfit
+//   <Given words list>flood,pencil,skirt,stall,carve,ledge,ceiling,meadow,stance,shovel,cute,plank,next,pay,enough,best,flow,clever,shake,sham,rind,weasel,grouse,bury,shrivel,pastiche,discomfit,sully
+//   <Vocabulary level>8000
+//   <Unfamiliar words list>rind,grouse,shrivel,pastiche,discomfit
+//   <Given words list>${text}
+//   <Vocabulary level>${vocabulary}
+//   <Unfamiliar words list>`;
+// }
 function generatePrompt(text, vocabulary) {
-  return `As an English language expert, your task is to analyze the given words list in CSV format and identify words that might be unfamiliar to a non-native English speaker who is familiar with an amount of most common English words, or vocabulary level. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 5,000 words. Considering the given vocabulary level, return a list of the unfamiliar words in CSV format. If you really sure that the non-native English speaker knows all the words, return: "none".
-  <Given words list>flood,pencil,skirt,stall,carve,ledge,ceiling,meadow,stance,shovel,cute,plank,next,pay,enough,best,flow,clever,shake,sham,rind,weasel,grouse,bury,shrivel,pastiche,discomfit,sully
-  <Vocabulary level>4000
-  <Unfamiliar words list>stall,ledge,ceiling,stance,sham,rind,weasel,grouse,shrivel,pastiche,discomfit
-  <Given words list>flood,pencil,skirt,stall,carve,ledge,ceiling,meadow,stance,shovel,cute,plank,next,pay,enough,best,flow,clever,shake,sham,rind,weasel,grouse,bury,shrivel,pastiche,discomfit,sully
-  <Vocabulary level>8000
-  <Unfamiliar words list>rind,grouse,shrivel,pastiche,discomfit
-  <Given words list>${text}
-  <Vocabulary level>${vocabulary}
-  <Unfamiliar words list>`;
+  return `As an advanced AI language model, your task is to analyze the given list of words and identify those that may be unfamiliar to a non-native English speaker with a vocabulary level of ${vocabulary} words. For context, a native English speaker has an average vocabulary of 15,000 words, while a non-native English speaker with an IELTS test score of 6 typically knows around 5,000 words. Please return a list of the unfamiliar words in CSV format. If you believe that the non-native English speaker would be familiar with all the words given their vocabulary level, please return "none".
+
+  Here are some examples to guide you:
+  If the given words are 'flood,pencil,skirt,stall,carve,ledge,ceiling,meadow,stance,shovel,cute,plank,next,pay,enough,best,flow,clever,shake,sham,rind,weasel,grouse,bury,shrivel,pastiche,discomfit,sully' and the vocabulary level is 4000, the unfamiliar words might be 'stall,ledge,ceiling,stance,sham,rind,weasel,grouse,shrivel,pastiche,discomfit'.
+  If the given words are the same and the vocabulary level is 8000, the unfamiliar words might be 'rind,grouse,shrivel,pastiche,discomfit'.
+
+  Now, here is the list of words for you to analyze:
+  ${text}
+
+  Based on your expertise, please identify the unfamiliar words for a non-native English speaker with a vocabulary level of ${vocabulary} words. Remember to return the words in CSV format. If all words are likely to be familiar, please return "none".`;
 }
 
