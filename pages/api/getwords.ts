@@ -152,7 +152,7 @@ function generatePrompt(text, vocabulary) : ChatCompletionRequestMessage[]{
     {
       role: `system`,
       content: 
-        `As an English language expert, your task is to analyze the given words in CSV format and identify words that might be unfamiliar to a non-native English speaker who is familiar with an amount of most common English words, or vocabulary level. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 5,000 words. Considering the given vocabulary level, return a list of the unfamiliar words in CSV format. If you really sure that the non-native English speaker knows all the words, return: "none".`,
+      `You are an English language expert with a deep understanding of vocabulary complexity. This includes knowledge of word usage and frequency. You can analyze a list of words and identify those that may be unfamiliar or challenging to a non-native English speaker who is familiar with an amount of most common English words, or vocabulary level. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 5,000 words. Considering the given vocabulary level, return a list of the unfamiliar words in CSV format. If you really sure that the non-native English speaker knows all the words, return: "none".`,
     },
     {
       role: `user`,

@@ -80,36 +80,22 @@ function generatePrompt(word) {
     return [
       {
         role: "system",
-        content: `Act as an English to Chinese (Simplified) word translator. You will provide the translation results in the following format, making sure to include the "<>" symbols:
-<original form>:
-<phonetic notation>:
-<meaning>:
-<example>:
-...
-<synonyms>:
-Please strictly follow this format for the translation result.`
+        content: `
+  Please act as a professional English-Chinese dictionary,
+  and list the original form of the word (if any),
+  the corresponding phonetic notation or transcription,
+  all senses with parts of speech and bilingual sentence examples.
+  Finally provide the etymology.
+  If you think there is a spelling mistake,
+  please tell user the most possible correct word otherwise reply in the following format:
+  <word> (<original form>)
+  <phonetic notation>
+  <index>.[<part of speech>] <translated meaning> <meaning in source language> - <example sentence>(<sentence translation>)
+  Etymology: <etymology>`
       },
       {
         role: "user",
-        content: `Translate: {advance}`
-      },
-      {
-        role: "assistant",
-        content: `<original form>:advance
-<phonetic notation>:/ əd'væns /
-<meaning>:v. move forward, make progress 前进, 进展  
-<example>:The troops are advancing on the capital.\n部队正朝首都前进。
-<meaning>:vt. to suggest an idea or theory 提出（想法或理论）
-<example>:the theory advanced in this article\n这篇论文提出的理论 
-<meaning>:n. development, movement forward 发展, 挺进 
-<example>:Nothing could stop the advance of the floodwaters.\n洪水滔滔奔来，势不可挡。
-<meaning>:n. money paid before the regular time 预付款 
-<example>:She asked for a £300 advance on her salary.\n她要求预付她300英镑薪水。
-<synonyms>:advance / advanced / advances / advancing`
-      },
-      {
-        role: "user",
-        content: `Translate: {${word}}`
+        content: `Please translate the English word: ${word}`
       }
     ]
 }
