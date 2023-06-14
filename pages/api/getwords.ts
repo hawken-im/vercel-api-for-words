@@ -152,7 +152,7 @@ function generatePrompt(text, vocabulary) : ChatCompletionRequestMessage[]{
     {
       role: `system`,
       content: 
-        `As an advanced AI language model, your task is to analyze the given list of words and identify those that may be unfamiliar to a non-native English speaker with a vocabulary level of ${vocabulary} words. For context, a native English speaker has an average vocabulary of 15,000 words, while a non-native English speaker with an IELTS test score of 6 typically knows around 5,000 words. Please return a list of the unfamiliar words in CSV format. If you believe that the non-native English speaker would be familiar with all the words given their vocabulary level, please return "none".`,
+        `As an English language expert, your task is to analyze the given words in CSV format and identify words that might be unfamiliar to a non-native English speaker who is familiar with an amount of most common English words, or vocabulary level. Keep in mind that a native English speaker has an average vocabulary of 15,000 words, but a non-native English speaker with IELTS test score of 6 has an average vocabulary of 5,000 words. Considering the given vocabulary level, return a list of the unfamiliar words in CSV format. If you really sure that the non-native English speaker knows all the words, return: "none".`,
     },
     {
       role: `user`,
