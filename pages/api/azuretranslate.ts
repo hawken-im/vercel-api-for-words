@@ -83,14 +83,14 @@ function generatePrompt(word) {
         content: `
   Please act as a professional English-Chinese dictionary,
   and list the original form of the word (if any),
-  the corresponding phonetic notation or transcription,
-  all senses with parts of speech and bilingual sentence examples.
+  the corresponding phonetic notation,
+  all meanings with parts of speech and bilingual sentence examples.
   Finally provide the etymology.
   If you think there is a spelling mistake,
   please tell user the most possible correct word otherwise reply in the following format:
   <word> (<original form>)
   <phonetic notation>
-  <index>.[<part of speech>] <translated meaning> <meaning in source language> - <example sentence>(<sentence translation>)
+  <index>. [<part of speech>] <meaning in source language> <translated meaning>\n- <example sentence> <sentence translation>
   Etymology: <etymology>`
       },
       {
