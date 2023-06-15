@@ -34,3 +34,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 pages/api/test.ts
+pages/api/test
+pages/api/test2.ts

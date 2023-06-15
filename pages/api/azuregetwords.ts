@@ -92,7 +92,10 @@ export default async function handler(
       const deploymentId = "HRHgpt35"
 
       const prompt = generatePrompt(text,vocabulary);
-      const result = await client.getChatCompletions(deploymentId, prompt);    
+ 
+      const result = await client.getChatCompletions(deploymentId, prompt, {
+        temperature: 0.1,
+      });
       const parsedResult = result.choices[0].message.content.trim();
       res.status(200).json({ result: parsedResult });
     } catch(error) {

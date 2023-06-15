@@ -85,13 +85,13 @@ function generatePrompt(word) {
   and list the original form of the word (if any),
   the corresponding phonetic notation,
   all meanings with parts of speech and bilingual sentence examples.
-  Finally provide the etymology.
+  Finally provide the synonyms (if any).
   If you think there is a spelling mistake,
   please tell user the most possible correct word otherwise reply in the following format:
   <word> (<original form>)
   <phonetic notation>
   <index>. [<part of speech>] <meaning in source language> <translated meaning>\n- <example sentence> <sentence translation>
-  Etymology: <etymology>`
+  (Synonyms: <synonyms>)`
       },
       {
         role: "user",
@@ -99,3 +99,5 @@ function generatePrompt(word) {
       }
     ]
 }
+
+//  Finally provide the etymology.
