@@ -94,11 +94,9 @@ export default async function handler(
 }
   
 function generatePrompt(word) {
-    return `Act as a English to Chinese word translator. You will provide the original form of the word (if any), up to 2 meanings in Chinese (including parts of speech). Please strictly follow the format below for the translation result.
-    Translate: ${word}.
-
-    <original form>:
-    <meaning 1>:
-    <meaning 2 (if any)>:
+    return `Act as a English to Chinese word translator. You will provide the original form of the word (if any), up to 3 meanings in Chinese (including parts of speech). Please strictly follow the format below for the translation result:
+    <original form>
+    <index>. [<part of speech>] <meaning in target language>
+    Now translate: ${word}
     `;
 }
