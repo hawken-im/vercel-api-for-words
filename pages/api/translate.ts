@@ -97,7 +97,7 @@ function generatePrompt(word) {
     return `Act as a English to Chinese (Simplified) word translator. You will provide the original form of the word (if any), the corresponding phonetic notation (if any), all meanings (including parts of speech) in both English and Chinese, a bilingual example sentence. Please strictly follow the format below for the translation result.
     Translate: ${word}.
 
-    <orignal form>:
+    <original form>:
     <phonetic notation>:
     <meaning 1>:
     <meaning 2>:
