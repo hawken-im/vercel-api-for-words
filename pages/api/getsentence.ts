@@ -61,6 +61,8 @@ export default async function handler(
     return;
   }
 
+  const word = req.body.word || "";
+
   try {
     const client = new OpenAIClient(
       endpoint,
@@ -69,7 +71,7 @@ export default async function handler(
     //const deploymentId = "text-davici-003";
     const deploymentId = "HRHgpt35";
 
-    const prompt = generatePrompt();
+    const prompt = generatePrompt(word);
 
     const result = await client.getChatCompletions(deploymentId, prompt, {
       temperature: 0.1,
@@ -92,15 +94,15 @@ export default async function handler(
   }
 }
 
-function generatePrompt() {
+function generatePrompt(word) {
   return [
     {
       role: `system`,
-      content: `Please randomly provide a sentence that is orignates from a book, a movie, song lyric, or a well-known personality. Be sure to include the source of the sentence. Do NOT made anything up. The format of the output should strictly adhere to the following structure:<sentence> - <source>`,
+      content: `With a theme word "${word}", please provide a sentence that is orignates either from a book, a movie, song lyric, or a well-known personality. Be sure to include the source of the sentence. Do NOT made anything up. The format of the output should strictly adhere to the following structure:<sentence> - <source>`,
     },
     {
       role: `user`,
-      content: `Give me a sentence with source.`,
+      content: `Now give me a sentence with source.`,
     },
   ];
 }
