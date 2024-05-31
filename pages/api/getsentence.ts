@@ -98,11 +98,7 @@ function generatePrompt(word) {
   return [
     {
       role: `system`,
-      content: `With a theme word "${word}", please provide a sentence that is orignates either from a book, a movie, song lyric, or a well-known personality. Be sure to include the source of the sentence. Do NOT made anything up. The format of the output should strictly adhere to the following structure:<sentence> - <source>`,
-    },
-    {
-      role: `user`,
-      content: `Now give me a sentence with source.`,
+      content: `Given a theme word "${word}", generate an English sentence that originates from a book, movie, song lyric, or a well-known personality. The sentence does not need to include the theme word, but should be related to it. The sentence must be a direct quote and not a fabrication. Please provide the source of the quote. The format of the output should strictly follow the structure: <sentence> - <source>`,
     },
   ];
 }
