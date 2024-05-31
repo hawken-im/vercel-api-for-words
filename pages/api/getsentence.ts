@@ -1,11 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import Cors from "cors";
-import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
+import { AzureKeyCredential, OpenAIClient } from "@azure/openai";
+const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+const azureApiKey = process.env.AZURE_OPENAI_KEY;
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAIClient(endpoint, new AzureKeyCredential(azureApiKey));
+//const deploymentId = "text-davinci-003";
+//const result = await client.getCompletions(deploymentId, prompt);
 
 // Initializing the cors middleware
 // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
@@ -51,23 +52,29 @@ export default async function handler(
   // // Rest of the API logic
   // res.json({ message: `Hello Everyone!${process.env.TEST_KEY}` })
 
-  if (!configuration.apiKey) {
+  if (!openai) {
     res.status(500).json({
       error: {
-        message: "OpenAI API key not configured.",
+        message: "Azure OpenAI API key not configured.",
       },
     });
     return;
   }
 
   try {
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: generatePrompt(),
-      n: 1,
-    });
-    const parsedResult = completion.data.choices[0].message.content.trim();
+    const client = new OpenAIClient(
+      endpoint,
+      new AzureKeyCredential(azureApiKey)
+    );
+    //const deploymentId = "text-davici-003";
+    const deploymentId = "HRHgpt35";
 
+    const prompt = generatePrompt();
+
+    const result = await client.getChatCompletions(deploymentId, prompt, {
+      temperature: 0.1,
+    });
+    const parsedResult = result.choices[0].message.content.trim();
     res.status(200).json({ result: parsedResult });
   } catch (error) {
     // Consider adjusting the error handling logic for your use case
@@ -85,7 +92,7 @@ export default async function handler(
   }
 }
 
-function generatePrompt(): ChatCompletionRequestMessage[] {
+function generatePrompt() {
   return [
     {
       role: `system`,
