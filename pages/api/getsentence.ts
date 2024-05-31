@@ -96,7 +96,7 @@ function generatePrompt() {
   return [
     {
       role: `system`,
-      content: `Please provide a sentence that is orignates from a movie, a book, song lyric, or a well-known personality. Be sure to include the source of the sentence. Do NOT made anything up. The format of the output should strictly adhere to the following structure:<sentence> - <source>`,
+      content: `Please randomly provide a sentence that is orignates from a book, a movie, song lyric, or a well-known personality. Be sure to include the source of the sentence. Do NOT made anything up. The format of the output should strictly adhere to the following structure:<sentence> - <source>`,
     },
     {
       role: `user`,
